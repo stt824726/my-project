@@ -1,0 +1,4 @@
+# Project exclude paths
+/common/common-swagger/target/
+/eureka/target/
+/user/target/
