@@ -1,0 +1,16 @@
+server:
+  port: 2001
+
+profiles:
+    active: local
+
+spring:
+  application:
+    name: gateway
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:2000/eureka/

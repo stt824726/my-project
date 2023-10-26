@@ -7,7 +7,7 @@ spring:
     allow-bean-definition-overriding: true
 
 server:
-  port: ${port:2001}
+  port: ${port:3001}
   servlet:
     context-path: /user
 
