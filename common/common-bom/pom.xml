@@ -28,6 +28,7 @@
         <commons.fileupload.version>1.4</commons.fileupload.version>
         <commons-text.version>1.9</commons-text.version>
         <httpclient.version>4.5.10</httpclient.version>
+        <guava.verson>31.0.1-jre</guava.verson>
     </properties>
 
     <dependencyManagement>
@@ -119,6 +120,11 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpmime</artifactId>
                 <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.verson}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

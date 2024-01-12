@@ -8,17 +8,18 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <artifactId>common</artifactId>
-    <name>common</name>
 
-    <description>基础模块</description>
+    <artifactId>common-bus</artifactId>
 
-    <modules>
-        <module>common-bom</module>
-        <module>common-swagger</module>
-        <module>common-core</module>
-        <module>common-workflow</module>
-        <module>common-bus</module>
-    </modules>
+    <name>common-bus</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+   <dependencies>
+       <dependency>
+           <groupId>com.stt</groupId>
+           <artifactId>common-core</artifactId>
+           <version>1.0-SNAPSHOT</version>
+       </dependency>
+   </dependencies>
 </project>
