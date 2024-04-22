@@ -39,15 +39,15 @@
     <!--动态路由组件-->
 
     <!--注册中心客户端-->
-<!--    <dependency>
+    <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
     </dependency>
-    &lt;!&ndash;配置中心客户端&ndash;&gt;
+    <!--配置中心客户端-->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-    </dependency>-->
+    </dependency>
     <!--验证码-->
     <dependency>
       <groupId>com.github.anji-plus</groupId>
@@ -106,21 +106,21 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-      <plugin>
+     <!-- <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
         <configuration>
           <skip>false</skip>
         </configuration>
-      </plugin>
-      <plugin>
+      </plugin>-->
+     <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <version>3.3.0</version>
         <configuration>
           <finalName>xinfangbao-gateway</finalName>
           <descriptors>
-            <!-- 描述文件路径 -->
+            &lt;!&ndash; 描述文件路径 &ndash;&gt;
             <descriptor>src/main/assembly/assembly.xml</descriptor>
           </descriptors>
           <archive>
@@ -131,17 +131,17 @@
         </configuration>
         <executions>
           <execution>
-            <!--名字任意 -->
+            &lt;!&ndash;名字任意 &ndash;&gt;
             <id>make-assembly</id>
-            <!-- 绑定到package生命周期阶段上 -->
+            &lt;!&ndash; 绑定到package生命周期阶段上 &ndash;&gt;
             <phase>package</phase>
             <goals>
-              <!-- 只运行一次 -->
+              &lt;!&ndash; 只运行一次 &ndash;&gt;
               <goal>single</goal>
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
     </plugins>
   </build>
 </project>

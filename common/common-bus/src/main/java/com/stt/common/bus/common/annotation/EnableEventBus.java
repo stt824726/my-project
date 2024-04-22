@@ -16,6 +16,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
+@EnableAutoConfiguration
 @Import(EventBusConfiguration.class)
 public @interface EnableEventBus {
 
