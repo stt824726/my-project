@@ -20,5 +20,6 @@
         <module>common-core</module>
         <module>common-workflow</module>
         <module>common-bus</module>
+        <module>common-gateway</module>
     </modules>
 </project>
