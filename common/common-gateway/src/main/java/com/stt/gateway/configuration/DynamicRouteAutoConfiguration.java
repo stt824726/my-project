@@ -1,6 +1,7 @@
 package com.stt.gateway.configuration;
 
 import com.stt.core.constant.RedisCacheEnums;
+import com.stt.gateway.helper.RouteConfigurationCacheHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.cloud.gateway.config.GatewayProperties;
@@ -41,10 +42,8 @@ public class DynamicRouteAutoConfiguration {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(redisConnectionFactory);
         container.addMessageListener((message, bytes) -> {
-            log.warn("接收到重新JVM 重新加载路由事件");
-            RouteCacheHolder.removeRouteList();
+            RouteConfigurationCacheHolder.removeRouteList();
         }, new ChannelTopic(RedisCacheEnums.ROUTE_JVM_RELOAD_TOPIC.getKey()));
         return container;
     }
-
 }
