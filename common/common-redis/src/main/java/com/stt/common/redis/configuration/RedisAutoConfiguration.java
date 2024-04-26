@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
@@ -46,8 +47,8 @@ import java.util.Set;
  **/
 @Slf4j
 @Configuration
+@ComponentScan("com.stt.common.redis.configuration")
 @EnableAutoConfiguration
-@ConditionalOnProperty(name = "redis.enabled", matchIfMissing = true)
 public class RedisAutoConfiguration {
 
     @Autowired

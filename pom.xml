@@ -61,7 +61,7 @@
   </dependencies>
   <modules>
     <module>eureka</module>
-    <module>user</module>
+    <module>authority</module>
     <module>common</module>
     <module>gateway</module>
   </modules>

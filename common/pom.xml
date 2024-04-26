@@ -18,7 +18,6 @@
         <module>common-bom</module>
         <module>common-swagger</module>
         <module>common-core</module>
-        <module>common-workflow</module>
         <module>common-bus</module>
         <module>common-gateway</module>
         <module>common-redis</module>
