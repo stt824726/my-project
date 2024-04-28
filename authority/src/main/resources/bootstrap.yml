@@ -3,16 +3,7 @@ server:
 
 spring:
   application:
-    name: @artifactId@
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${NACOS_HOST:1.117.77.46}:${NACOS_PORT:8848}
-      config:
-        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: ${NACOS_NAMESPACE:authority}
-        file-extension: yml
-        shared-configs:
-          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+    name: authority
   profiles:
-    active: @profiles.active@
+    active: local
+

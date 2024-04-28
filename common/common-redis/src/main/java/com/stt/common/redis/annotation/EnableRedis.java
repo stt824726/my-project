@@ -1,6 +1,6 @@
 package com.stt.common.redis.annotation;
 
-import com.stt.common.redis.configuration.RedisAutoConfiguration;
+import com.stt.common.redis.configuration.RedisConfig;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({ RedisAutoConfiguration.class })
+@Import({ RedisConfig.class })
 public @interface EnableRedis {
 
 }
