@@ -6,4 +6,7 @@ spring:
     name: authority
   profiles:
     active: local
+jasypt:
+  encryptor:
+    password: stt
 
