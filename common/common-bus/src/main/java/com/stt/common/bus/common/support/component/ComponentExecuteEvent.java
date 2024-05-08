@@ -1,5 +1,6 @@
-package com.stt.common.bus.common.support;
+package com.stt.common.bus.common.support.component;
 
+import com.stt.common.bus.common.support.BaseEvent;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,9 @@ import java.time.LocalDateTime;
  * @Version 1.0
  **/
 @Data
-public class ComponentResultEvent extends BaseEvent{
+public class ComponentExecuteEvent extends BaseEvent {
+
+    private String taskName;
 
     /**
      * 操作人

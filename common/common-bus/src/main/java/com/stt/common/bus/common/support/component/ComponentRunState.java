@@ -1,4 +1,4 @@
-package com.stt.common.bus.common.support;
+package com.stt.common.bus.common.support.component;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

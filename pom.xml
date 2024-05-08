@@ -60,10 +60,12 @@
     </dependency>
   </dependencies>
   <modules>
-    <module>eureka</module>
+    <module>center</module>
     <module>authority</module>
     <module>common</module>
     <module>gateway</module>
+    <module>work_flow</module>
+    <module>center</module>
   </modules>
 
   <dependencyManagement>
