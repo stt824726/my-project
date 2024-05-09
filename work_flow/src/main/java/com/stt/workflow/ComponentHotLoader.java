@@ -1,6 +1,8 @@
 package com.stt.workflow;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +30,8 @@ public class ComponentHotLoader {
 
     //组件jar包放置路径，默认放在classpath下的components目录下
     private String componentDirectory = "classpath:components";
-    private SqlsessionFactoryBean sqlsessionFactoryBean;
-    private SqlsessionFactory sqlsessionFactory;
+    private SqlSessionFactoryBean sqlSessionFactoryBean;
+    private SqlSessionFactory sqlSessionFactory;
     private PluginclassLoader pluginclassLoader;
     private final CopyOnWriteArraySet<URL> loadedurls = new CopyOnWriteArraySet<>();
     /**
