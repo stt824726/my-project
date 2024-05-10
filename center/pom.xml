@@ -13,6 +13,7 @@
   <groupId>com.stt</groupId>
   <artifactId>center</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>center</name>
   <!-- FIXME change it to the project's website -->

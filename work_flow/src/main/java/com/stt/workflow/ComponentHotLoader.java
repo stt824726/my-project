@@ -1,5 +1,8 @@
 package com.stt.workflow;
 
+import cn.hutool.core.lang.JarClassLoader;
+import com.stt.workflow.classLoad.PluginClassLoader;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -18,10 +22,11 @@ import java.util.concurrent.CopyOnWriteArraySet;
  **/
 @Slf4j
 @Service
+@Data
 public class ComponentHotLoader {
 
     //组件jar包对应的类加载器，每个组件对应一个类加载器
-    private final Map<String, JarclassLoader> jarclassLoaders = new HashMap<>();
+    private final Map<String, JarClassLoader> jarClassLoaders = new HashMap<>();
 
     private final String mapperPathPattern = "classpath*:mapper/*Mapper.xml";
 
@@ -32,18 +37,16 @@ public class ComponentHotLoader {
     private String componentDirectory = "classpath:components";
     private SqlSessionFactoryBean sqlSessionFactoryBean;
     private SqlSessionFactory sqlSessionFactory;
-    private PluginclassLoader pluginclassLoader;
+    private PluginClassLoader pluginClassLoader;
     private final CopyOnWriteArraySet<URL> loadedurls = new CopyOnWriteArraySet<>();
     /**
      * 初始化插件classLoader
      */
-    private void initO
-
-    {
-        if (pluginclassLoader == null) {
+    private void init(){
+        if (pluginClassLoader == null) {
             synchronized (ComponentHotLoader.class) {
-                if (pluginclassLoader == null) {
-                    pluginclassLoader = new PluginclassLoader(Thread.currentThread().getContextClassLoader());
+                if (pluginClassLoader == null) {
+                    pluginClassLoader = new PluginClassLoader(Thread.currentThread().getContextClassLoader());
                 }
             }
         }

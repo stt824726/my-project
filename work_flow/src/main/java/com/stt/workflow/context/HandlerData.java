@@ -22,7 +22,7 @@ public class HandlerData {
     private String name;
 
     //运行状态
-    private RunnableState runnablestate;
+    private RunnableState runnableState;
 
     //运行时间
     private TimeCounter timeCounter;
@@ -33,13 +33,13 @@ public class HandlerData {
     public HandlerData() {
     }
 
-    public HandlerData(String no, RunnableState runnablestate) {
-        this(no, runnablestate, null);
+    public HandlerData(String no, RunnableState runnableState) {
+        this(no, runnableState, null);
     }
 
-    public HandlerData(String no, RunnableState runnablestate, String logs) {
+    public HandlerData(String no, RunnableState runnableState, String logs) {
         this.no = no;
-        this.runnablestate = runnablestate;
+        this.runnableState = runnableState;
         this.logs = logs;
     }
 
