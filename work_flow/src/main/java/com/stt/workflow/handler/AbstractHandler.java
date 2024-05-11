@@ -248,12 +248,47 @@ public abstract class AbstractHandler implements NodeHandler {
     }
 
     @Override
-    public String name(){
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof AbstractHandler)) {
+            return false;
+        }
+        AbstractHandler handler = (AbstractHandler) object;
+        return this.no.equals(handler.no());
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (this.no == null ? 0 : this.no.hashCode());
+        return result;
+    }
+
+
+    /**
+     * 设置拦截器
+     *
+     * @param interceptor
+     */
+    public void setHandlerInterceptor(HandlerInterceptor interceptor) {
+        if (interceptor != null) {
+            this.interceptor = interceptor;
+        }
+    }
+
+    @Override
+    public String name() {
         return this.name;
     }
 
     @Override
-    public String no(){
+    public String no() {
         return this.no;
     }
 }

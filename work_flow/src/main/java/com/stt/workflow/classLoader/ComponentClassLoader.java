@@ -1,4 +1,4 @@
-package com.stt.workflow;
+package com.stt.workflow.classLoader;
 
 import com.stt.core.util.springUtil.SpringBeanUtil;
 import lombok.extern.slf4j.Slf4j;

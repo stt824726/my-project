@@ -5,7 +5,7 @@ import com.stt.core.constant.dto.EngineExecuteDTO;
 import com.stt.core.util.Result;
 import com.stt.core.util.common.JacksonUtil;
 import com.stt.core.util.springUtil.SpringBeanUtil;
-import com.stt.workflow.ComponentHotLoader;
+import com.stt.workflow.context.ComponentHotLoader;
 import com.stt.workflow.component.ComponentManager;
 import com.stt.workflow.listener.ComponentStateService;
 import com.stt.workflow.listener.EngineStateService;
