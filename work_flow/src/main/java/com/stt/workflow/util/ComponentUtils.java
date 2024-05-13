@@ -34,12 +34,12 @@ public class ComponentUtils {
         if (!SpringBeanUtil.contains(beanKey)) {
             throw new BussinessException("组件【“+componentId+”】未注册!");
         }
-        List<String> processList = SpringBeanUtil.getBean(beanKey, ArrayList.class);
+        List<String> processList = SpringBeanUtil.getBeanByType(beanKey, ArrayList.class);
         ComponentChainWrapper wrapper = new ComponentChainWrapper();
         wrapper.no(beanKey);
         //添加并生成组件责任链
         for (String str : processList) {
-            ProcessorHandler handler = SpringBeanUtil.getBean(str, ProcessorHandler.class);
+            ProcessorHandler handler = SpringBeanUtil.getBeanByType(str, ProcessorHandler.class);
             wrapper.addProcessHandler(handler);
         }
         return wrapper.build();
@@ -78,7 +78,7 @@ public class ComponentUtils {
         event.setRunnablestate(runnablestate);
         event.setLogs(msg);
         //获取事件提供者
-        IEventProducer eventProducer = SpringBeanUtil.getBean(IEventProducer.class);
+        IEventProducer eventProducer = SpringBeanUtil.getBeanByType(IEventProducer.class);
         if (eventProducer == null) {
             throw new BussinessException("缺少事件提供者");
         }

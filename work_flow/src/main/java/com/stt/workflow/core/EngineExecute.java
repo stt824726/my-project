@@ -51,7 +51,7 @@ public class EngineExecute {
         //创建工艺流引擎
         EngineLancer craftEngineLancer = new EngineLancer(threadPoolExecutor,null,craftEngineProperties.getChainTimeout());
         //设置组件数据库访问上下文
-        ComponentHotLoader componentHotLoader = SpringBeanUtil.getBean(ComponentHotLoader.class);
+        ComponentHotLoader componentHotLoader = SpringBeanUtil.getBeanByType(ComponentHotLoader.class);
         craftEngineLancer.setSqlsessionFactory(componentHotLoader.getSqlSessionFactory());
         //设置组件数据库操作的类相关信息
         craftEngineLancer.setLoadedClasses(componentHotLoader.getPluginClassLoader().getLoadedClasses());

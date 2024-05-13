@@ -1,12 +1,12 @@
 package com.stt.core.util.springUtil;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Map;
@@ -71,8 +72,19 @@ public class SpringBeanUtil implements ApplicationContextAware {
      * @param <T>
      * @return
      */
-    public static <T> T getBean(Class<T> clazz){
+    public static <T> T getBeanByType(Class<T> clazz){
         return beanFactory.getBean(clazz);
+    }
+
+
+    /**
+     * 从容器中获取bean
+     * @param className
+     * @param <T>
+     * @return
+     */
+    public static Object getBean(String className){
+        return beanFactory.getBean(className);
     }
 
 
@@ -86,7 +98,7 @@ public class SpringBeanUtil implements ApplicationContextAware {
         //先注册bean
         registerBean(beanName,clazz,null);
         //注册controller到RequestMappingHandlerMapping
-        RequestMappingHandlerMapping handlerMapping = SpringBeanUtil.getBean(RequestMappingHandlerMapping.class);
+        RequestMappingHandlerMapping handlerMapping = SpringBeanUtil.getBeanByType(RequestMappingHandlerMapping.class);
         if(handlerMapping != null){
             Method method = handlerMapping.getClass().getSuperclass().getSuperclass().getDeclaredMethod("detectHandlerMethods",Object.class);
             method.setAccessible(true);
@@ -134,7 +146,7 @@ public class SpringBeanUtil implements ApplicationContextAware {
      * @param <T>
      * @return
      */
-    public static <T> T getBean(String beanName,Class<T> clazz){
+    public static <T> T getBeanByType(String beanName, Class<T> clazz){
         return beanFactory.getBean(beanName,clazz);
     }
 
@@ -190,6 +202,29 @@ public class SpringBeanUtil implements ApplicationContextAware {
         beanFactory.destroySingleton(beanName);
     }
 
+    /**
+     * 销毁bean
+     * @param beanName
+     */
+    public static void destoryBean(String beanName,Object bean){
+        beanFactory.destroyBean(beanName,bean);
+    }
+
+
+    /**
+     * 获取根bean定义Map
+     * @return
+     */
+    public static Map<String, RootBeanDefinition> getRootBeanDefinitionMap()throws NoSuchFieldException, IllegalAccessException {
+        Field mergedBeanDefinitions = beanFactory.getClass().getSuperclass()
+                .getSuperclass().getDeclaredField("mergedBeanDefinitions");
+        mergedBeanDefinitions.setAccessible(true);
+        return (Map<String,RootBeanDefinition>)mergedBeanDefinitions.get(beanFactory);
+    }
+
+    public static void removeBean(String beanName){
+        beanFactory.removeBeanDefinition(beanName);
+    }
 
     /**
      * 从spring中删除controller
@@ -198,7 +233,7 @@ public class SpringBeanUtil implements ApplicationContextAware {
     protected static void removeController(String beanName){
         beanFactory.removeBeanDefinition(beanName);
 
-        final RequestMappingHandlerMapping handlerMapping = SpringBeanUtil.getBean("requestMappingHandlerMapping",RequestMappingHandlerMapping.class);
+        final RequestMappingHandlerMapping handlerMapping = SpringBeanUtil.getBeanByType("requestMappingHandlerMapping",RequestMappingHandlerMapping.class);
         if(handlerMapping == null){
             return;
         }
