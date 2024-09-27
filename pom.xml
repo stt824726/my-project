@@ -64,8 +64,9 @@
     <module>authority</module>
     <module>common</module>
     <module>gateway</module>
-    <module>work_flow</module>
     <module>center</module>
+    <module>common-quartz</module>
+    <module>common-quartz</module>
   </modules>
 
   <dependencyManagement>

@@ -21,5 +21,6 @@
         <module>common-bus</module>
         <module>common-gateway</module>
         <module>common-redis</module>
+        <module>common-quartz</module>
     </modules>
 </project>

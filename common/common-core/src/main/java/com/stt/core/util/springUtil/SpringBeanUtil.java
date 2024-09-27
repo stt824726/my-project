@@ -1,6 +1,9 @@
 package com.stt.core.util.springUtil;
 
+import cn.hutool.core.util.StrUtil;
+import com.stt.core.CommonException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -20,6 +23,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Map;
@@ -80,7 +84,7 @@ public class SpringBeanUtil implements ApplicationContextAware {
     /**
      * 从容器中获取bean
      * @param className
-     * @param <T>
+     * @param
      * @return
      */
     public static Object getBean(String className){
@@ -291,6 +295,48 @@ public class SpringBeanUtil implements ApplicationContextAware {
             return false;
         }
         return true;
+    }
+
+
+    /**
+     * 调用spring的方法
+     * @param className
+     * @param methodName
+     * @param methodParamsValue
+     * @return
+     */
+    public static Object invokeMethod(String className,String methodName,String methodParamsValue) throws Exception{
+        Object target;
+        Method method;
+        Object returnValue;
+        // 通过Spring上下文去找 也有可能找不到
+        target = SpringBeanUtil.getBean(className);
+        // 尝试获取代理对象
+        Object proxyBean = AopContext.currentProxy();
+        if (proxyBean == null) {
+            proxyBean = target;
+        }
+        try{
+            if(StrUtil.isNotEmpty(methodParamsValue)){
+                method = proxyBean.getClass().getDeclaredMethod(methodName, String.class);
+                ReflectionUtils.makeAccessible(method);
+                returnValue = method.invoke(target, methodParamsValue);
+            }else{
+                method = proxyBean.getClass().getDeclaredMethod(methodName);
+                ReflectionUtils.makeAccessible(method);
+                returnValue = method.invoke(target);
+            }
+            return returnValue;
+        }catch (NoSuchMethodException e){
+            log.error("spring bean反射异常方法未找到,执行任务：{}  执行方法: {} ", className,methodName);
+            throw new CommonException(e.getMessage());
+        }catch (IllegalAccessException e) {
+            log.error("定时任务spring bean反射异常,执行任务：{}  执行方法: {} ", className,methodName);
+            throw new CommonException("定时任务spring bean反射异常,执行任务：" + className);
+        }catch (InvocationTargetException e) {
+            log.error("定时任务spring bean反射执行异常,执行任务：{}  执行方法: {} ", className,methodName);
+            throw new CommonException("定时任务spring bean反射执行异常,执行任务：" + className);
+        }
     }
 
 
